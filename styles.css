@@ -38,7 +38,7 @@ h1 {
     background-color: white;
 }
 
-button {
+/**button {
     padding: 10px;
     margin: 10px;
     height: 50px;
@@ -46,4 +46,21 @@ button {
     position: relative;
     right: 75vw;
     top: 30vh;
+}
+
+.select {
+    height: 50vh;
+    width: 20vw;
+    background-color: rgb(90, 72, 72, 0.1);
+    position: relative;
+    right: 75vw;
+    top: 30vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+button {
+    background-color: aquamarine;
 }

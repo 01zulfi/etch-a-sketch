@@ -7,7 +7,7 @@ for (let gridNumber = 1; gridNumber <= (gridNumberUser*gridNumberUser); gridNumb
     const grid = document.createElement('div');
     grid.classList.add('grid');
     container.style.cssText = `grid-template-columns: repeat(${gridNumberUser}, ${60/gridNumberUser}vw);
-                                grid-template-rows: repeat(${gridNumberUser}, ${90/gridNumberUser}vh) `
+                               grid-template-rows: repeat(${gridNumberUser}, ${90/gridNumberUser}vh) `
     container.appendChild(grid);
 }
 
@@ -22,53 +22,88 @@ const resetButton = document.querySelector('.reset');
 function resetBgColor() {
     grids.forEach(index => index.classList.remove('hover'));
     grids.forEach(index => index.removeAttribute('style'));
+    grids.forEach(index => index.classList.remove('random'));
 } 
 
 resetButton.addEventListener('click', () =>{
             resetBgColor();
 })
 
-
+let count = 0;
 function randomColor() {
+    // count++;
+    // console.log(count)
+    //  if (count==2) {
+    //      removeEvent();
+    //      return
+    // }
+    // if (count ==2 ) {
+    //     randomButton.removeEventListener('click', randomColor);
+    //     count = 0;
+    //     return
+    // }
+    // console.log(count)
+    // if ( count % 2 == 0 ) {
+    //     console.log(count);
+    //     console.log('bye');
+    //     //grids.forEach(index => index.classList.remove('hover'));
+    //     grids.forEach(index => index.classList.remove('random'));
+    //     grids.forEach(eachGrid => eachGrid.addEventListener('mouseover', () => {
+    //       eachGrid.style.cssText = 'background-color: white'
+    //     }));
+
+    //     return
+    // }
+
+    //grids.forEach(index => index.removeAttribute('style'));
     grids.forEach(eachGrid => eachGrid.addEventListener('mouseover', () => {
-        
+        console.log('hello');
         let red = Math.floor(Math.random()*255);
         let green = Math.floor(Math.random()*255);
         let blue = Math.floor(Math.random()*255);
-        randomRgba =  `rgba(${red}, ${green}, ${blue})`;
-        if ( eachGrid.getAttribute('style') ) return
-        // if ( eachGrid.getAttribute('style') ) {
-        //     // let numbersOnly = (index) => {
-        //     //     if (typeof(index) == 'number') {
-        //     //         return index
-        //     //     }
-        //     // }
-        //     let wowNumbers = eachGrid.getAttribute('style')
-        //     let arrayy = Array.from(wowNumbers.substring(22));
-        //     let number1 = '';
-        //     let string = 0;
-        //     for (let i=0; i<arrayy.length; i++) {
-        //         string = Number(arrayy[i]);
-        //         console.log(!(string == NaN));
-        //         if ( !(string == NaN)   ) {
-        //             number1 = number1 + arrayy[i];
-        //             console.log(number1);
-        //             }
-        //     }
-        //     let redBlack = red;
-        //     let greenBlack = green;
-        //     let blueBlack = blue;
-        //     redBlack = redBlack - red*0.1;
-        //     greenBlack = greenBlack - green*0.1;
-        //     blueBlack = blueBlack - blue*0.1;
-        //     randomRgba =  `rgba(${redBlack}, ${greenBlack}, ${blueBlack})`
-        //     eachGrid.style.cssText = `background-color : ${randomRgba}`
-        //     return
-        // }
+        randomRgba =  `rgba(${red}, ${green}, ${blue}, 1)`;
+        if ( eachGrid.getAttribute('style') ) {
+            
+            darkenByTenPercent(eachGrid);
+            return
+        }
+        eachGrid.classList.add('random')
         eachGrid.style.cssText = `background-color : ${randomRgba}`;
      }))
 }
 
-const randomButton = document.querySelector('.random');
+function removeEvent() {
+randomButton.removeEventListener('click', randomColor);
+}
 
-randomButton.addEventListener('click', randomColor);
+
+function darkenByTenPercent(eachGrid) {
+    let colorString = eachGrid.getAttribute('style');
+    colorString = colorString.slice( colorString.indexOf('(') + 1, colorString.indexOf(')') );
+    let redValue = Number(colorString.slice(0, colorString.indexOf(',')));
+    
+    colorString = colorString.slice(colorString.indexOf(',') + 1);
+    let greenValue = Number(colorString.slice(0, colorString.indexOf(',')));
+    
+    colorString = colorString.slice(colorString.indexOf(',') + 1);
+    let blueValue;
+    let opacity;
+    if ( colorString.indexOf(',') ==-1 ) {
+        blueValue = Number(colorString);
+        opacity = 1;
+    }
+    else {
+        blueValue = Number(colorString.slice(0, colorString.indexOf(',')));
+        colorString = colorString.slice(colorString.indexOf(',') + 1);
+        opacity = Number(colorString);
+    }
+    
+    opacity = opacity - 0.1;
+    darkenRgba = `rgba(${redValue}, ${greenValue}, ${blueValue}, ${opacity})`;
+    
+    eachGrid.style.cssText = `background-color : ${darkenRgba}`;
+}
+
+
+const randomButton = document.querySelector('.random');
+randomButton.addEventListener('click', randomColor)
