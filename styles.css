@@ -34,10 +34,10 @@ h1 {
     border: 0.5px solid white;
 }
 
-.grid.hover {
+/**.grid.hover {
     background-color: white;
 }
-
+**/
 /**button {
     padding: 10px;
     margin: 10px;

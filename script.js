@@ -1,17 +1,25 @@
 const container = document.querySelector('.container');
 
-
-let  gridNumberUser = 16;
-
+let grid;
+//let  gridNumberUser = 16;
+let gridNumberUser;
+gridNumberUser = prompt('Enter Grids: ');
 let gridSizeButton = document.querySelector('.gridSize');
 gridSizeButton.addEventListener('click', updatedGrids);
 
 function updatedGrids() {
     gridNumberUser = prompt("Enter Grids (1-64): ");
+    grids.forEach(eachGrid => eachGrid.remove());
+    gridCreation();
+    grids = document.querySelectorAll('.grid');
+    grids.forEach(eachGrid => eachGrid.classList.remove('hover'))
+    console.log(grids);
+    grids.forEach(eachGrid => eachGrid.addEventListener('mouseover', changeBgColor));
+    randomButton.addEventListener('click', randomColor);
     //for (let i = 0; i <= 1;) {
-        if ( gridNumberUser <1 || gridNumberUser > 64 ) {
-            gridNumberUser = prompt("Enter Grids (1-64): ");
-        }
+        // if ( gridNumberUser <1 || gridNumberUser > 64 ) {
+        //     gridNumberUser = prompt("Enter Grids (1-64): ");
+        // }
       //  else break
     //}
     newGrids();
@@ -24,19 +32,20 @@ function newGrids() {
 
 
 
-//function gridCreation() {
+function gridCreation() {
 for (let gridNumber = 1; gridNumber <= (gridNumberUser*gridNumberUser); gridNumber++) {
     gridSizeButton.addEventListener('click', updatedGrids);
-    const grid = document.createElement('div');
+    grid = document.createElement('div');
     grid.classList.add('grid');
     container.style.cssText = `grid-template-columns: repeat(${gridNumberUser}, ${60/gridNumberUser}vw);
                                grid-template-rows: repeat(${gridNumberUser}, ${90/gridNumberUser}vh) `
     container.appendChild(grid);
  
 }
-//}
+}
+gridCreation();
 //window.addEventListener('load', gridCreation);
-const grids = document.querySelectorAll('.grid');
+let grids = document.querySelectorAll('.grid');
 console.log(grids)
 function changeBgColor() {
     this.classList.add('hover');
@@ -59,9 +68,14 @@ resetButton.addEventListener('click', () =>{
 })
 
 let count = 0;
+//function randomColor(check)
 function randomColor() {
-    count++;
-    console.log(count);
+    // if ( check==1 ) {
+    //     return
+    // }
+    //removeEvent();
+    // count++;
+    // console.log(count);
 
         // console.log(count)
         //  if (count==2) {
@@ -74,34 +88,55 @@ function randomColor() {
         //     return
         // }
         // console.log(count)
-        if ( count % 2 == 0 ) {
-            console.log(count);
-            console.log('bye');
-            //grids.forEach(index => index.classList.remove('hover'));
-            grids.forEach(index => index.classList.remove('random'));
-            grids.forEach(eachGrid => eachGrid.addEventListener('mouseover', () => {
-            eachGrid.style.cssText = 'background-color: white'
-            }));
+        // if ( count % 2 == 0 ) {
+        //     console.log(count);
+        //     console.log('bye');
+        //     //grids.forEach(index => index.classList.remove('hover'));
+        //     grids.forEach(index => index.classList.remove('random'));
+        //     grids.forEach(eachGrid => eachGrid.addEventListener('mouseover', () => {
+        //     eachGrid.style.cssText = 'background-color: white'
+        //     }));
 
-            return
-        }
+        //     return
+        // }
 
         //grids.forEach(index => index.removeAttribute('style'));
+    //grids.forEach(eachGrid => eachGrid.addEventListener('mouseover', eachColor(eachGrid))); 
         grids.forEach(eachGrid => eachGrid.addEventListener('mouseover', () => {
-            console.log('hello');
-            let red = Math.floor(Math.random()*255);
-            let green = Math.floor(Math.random()*255);
-            let blue = Math.floor(Math.random()*255);
-            randomRgba =  `rgba(${red}, ${green}, ${blue}, 1)`;
-            if ( eachGrid.getAttribute('style') ) {
-                darkenByTenPercent(eachGrid);
-                return
-            }
-            eachGrid.classList.add('random')
-            eachGrid.style.cssText = `background-color : ${randomRgba}`;
+        console.log('hello');
+        let red = Math.floor(Math.random()*255);
+        let green = Math.floor(Math.random()*255);
+        let blue = Math.floor(Math.random()*255);
+        randomRgba =  `rgba(${red}, ${green}, ${blue}, 1)`;
+        if ( eachGrid.getAttribute('style') ) {
+            darkenByTenPercent(eachGrid);
             return
-        }))
-    }
+        }
+        eachGrid.classList.add('random')
+        eachGrid.style.cssText = `background-color : ${randomRgba}`;
+        return
+    
+   }))
+}
+
+// let itemIndex = 0;
+// function eachColor(eachGrid) {
+//     // let eachGrid = grids.item(++itemIndex);
+//      console.log(eachGrid);
+//     console.log('hello');
+//     let red = Math.floor(Math.random()*255);
+//     let green = Math.floor(Math.random()*255);
+//     let blue = Math.floor(Math.random()*255);
+//     randomRgba =  `rgba(${red}, ${green}, ${blue}, 1)`;
+//     if ( eachGrid.getAttribute('style') ) {
+//         darkenByTenPercent(eachGrid);
+//         return
+//     }
+//     eachGrid.classList.add('random')
+//     eachGrid.style.cssText = `background-color : ${randomRgba}`;
+//     return
+
+// }
 
 
 //let removedRandom = false;
@@ -141,11 +176,63 @@ function darkenByTenPercent(eachGrid) {
 
 
 const randomButton = document.querySelector('.random');
+randomButton.addEventListener('click', randomColor);
 //console.log(removedRandom)
 //if (!(removedRandom)) {
 //  console.log(removedRandom)
-randomButton.addEventListener('click', randomColor//, {
-//  once: true
-//}
-)
-//}
+// if ( !(count%2==0) ) {
+//     console.log(count);
+//     randomButton.addEventListener('click', randomColor);
+// }
+
+
+// randomButton.addEventListener('click', () => {
+//     count++;
+//     if (count % 2 == 0 ) {
+//         if ( !(count==0) ) {
+//         console.log(count);
+//         randomButton.removeEventListener('click', randomColor);
+//         }
+//         else {
+//             addRandomColor();
+//         }
+//     }
+//     else {
+//         console.log(count);
+//         addRandomColor();
+//     }
+// })
+
+// function addRandomColor() {
+//     randomButton.addEventListener('click', randomColor);
+// }
+
+
+// randomButton.addEventListener('click', () => { 
+//     if (true) {
+//         count++;
+//         console.log(count);
+//         if ( count = 2) {
+//             randomButton.removeEventListener('click', randomColor);
+//         }
+//         else {
+//         addRandomColor();
+//         }
+//     }
+
+// })
+
+// function countClick() {
+//     count++;
+    
+//     if ( count % 2 == 0) {
+//         console.log(count);
+//         randomColor(1);
+//     }
+//     else {
+//         console.log(count);
+//         randomColor();
+//     }
+// }
+
+// randomButton.addEventListener('click', countClick)
