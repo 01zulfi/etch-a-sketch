@@ -47,20 +47,28 @@ h1 {
     right: 75vw;
     top: 30vh;
 }
-
-.select {
-    height: 50vh;
+button {
+    background-color: aquamarine;
+}**/
+.buttons {
+    padding: 5px;
+    height: 30vh;
     width: 20vw;
-    background-color: rgb(90, 72, 72, 0.1);
+    border: 1px solid white;
     position: relative;
     right: 75vw;
     top: 30vh;
-    display: flex;
-    flex-direction: column;
+    display: grid
+}
+
+.buttons :hover {
+    background-color: azure;
+}
+
+.buttons :focus {
+    border: 2px solid red;
 }
 
 
 
-button {
-    background-color: aquamarine;
-}
+
