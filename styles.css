@@ -1,5 +1,5 @@
 html {
-    background-color: black;
+    background-color:rgb(8,8,8);
     height: 100%;
     width: 100%;
 }
@@ -9,66 +9,103 @@ body {
     width: 100%;
     margin: 0px;
     padding: 0px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 35vw 65vw;
+    grid-template-rows: 30vh 60vh 10vh;
+    grid-template-areas: "heading container"
+                         "buttons container"
+                         "logo container";
 }
 
 h1 {
     color: white;
+    font-size: 32px;
     height: fit-content;
-    width: fit-content;
+    font-family: 'Press Start 2P', sans-serif;
+    grid-area: heading;
+    justify-self: center;
+    padding-top: 20px;
 }
 
 .container {
     position: relative;
-    top: 5vh;
-    left: 15vw;
-    height: 90vh;
+    height: 95vh;
     width: 60vw;
-    border: 2px solid white;
+    border: 1px solid slategray;
     display: grid;
-    /**grid-template-columns: repeat(16, 35px);
-    grid-template-rows: repeat(16, 35px);**/
+    grid-area: container;
+    justify-self: start;
+    align-self: center;
 }
 
 .grid {
-    border: 0.5px solid white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/**.grid.hover {
+.grid.hover {
     background-color: white;
 }
-**/
-/**button {
-    padding: 10px;
-    margin: 10px;
-    height: 50px;
-    width: 80px;
-    position: relative;
-    right: 75vw;
-    top: 30vh;
-}
-button {
-    background-color: aquamarine;
-}**/
+
 .buttons {
-    padding: 5px;
-    height: 30vh;
+    border: 1px solid slategray;
+    grid-area: buttons;
+    height: fit-content;
     width: 20vw;
-    border: 1px solid white;
-    position: relative;
-    right: 75vw;
-    top: 30vh;
-    display: grid
+    height: 50vh;
+    padding: 5px;
+    justify-self: center;
+    display: grid;
 }
 
 .buttons :hover {
-    background-color: azure;
+    border: 2px solid white;
+    font-size: 20px;
 }
 
 .buttons :focus {
-    border: 2px solid red;
+    background-color: rgb(56, 66, 77, 0.9);
+    border: 5px solid white;
+    font-size: 20px;
 }
 
+.gridSize {
+    background-color:rgb(56, 66, 77, 0.5);
+    border: 2px solid gray;
+    color: white;
+    font-family: 'Sigmar One', sans-serif;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
 
+.reset {
+    background-color:rgb(56, 66, 77, 0.5);
+    border: 2px solid gray;
+    color: white;
+    font-family: 'Sigmar One', sans-serif;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
 
+.white {
+    background-color:rgb(56, 66, 77, 0.5);
+    border: 2px solid gray;
+    color: white;
+    font-family: 'Sigmar One', sans-serif;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.random {
+    background-color:rgb(56, 66, 77, 0.5);
+    border: 2px solid gray;
+    color: white;
+    font-family: 'Sigmar One', sans-serif;
+    font-size: 18px;
+}
+
+img {
+    width: 50px;
+    height: 50px;
+    background-color:rgba(169, 169, 169, 0.5);
+}
 
